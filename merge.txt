@@ -1,0 +1,37 @@
+public static String AppendToFile() throws IOException {
+		 
+		
+	    String inputfilePath ="src/main/resources/a.txt";
+	    String inputfilePath1 ="src/main/resources/b.txt";
+
+	    String inputfilePath2 ="src/main/resources/c.txt";
+
+
+
+	    String filePath ="src/main/resources/output3.txt";
+	    File file=new File(filePath);
+	    		
+	    		  byte[] bytes = Files.readAllBytes(Paths.get(inputfilePath));
+	    		  byte[] bytes1 = Files.readAllBytes(Paths.get(inputfilePath1));
+	    		  byte[] bytes2 = Files.readAllBytes(Paths.get(inputfilePath2));
+
+	 
+	        Path filePathObj = Paths.get(filePath);
+	        boolean fileExists = Files.exists(filePathObj);
+	        if(fileExists) {
+	            try {
+	                Files.write(filePathObj, bytes, StandardOpenOption.APPEND);
+	                Files.write(filePathObj, bytes1, StandardOpenOption.APPEND);
+	                Files.write(filePathObj, bytes2, StandardOpenOption.APPEND);
+
+	                System.out.println("! Data Successfully Appended !");
+	            } catch (IOException ioExceptionObj) {
+	                System.out.println("Problem Occured While Writing To The File= " + ioExceptionObj.getMessage());
+	            }
+	        } else {
+	            System.out.println("File Not Present! Please Check!");
+	        }
+			return "! Data Successfully Appended !";       
+	 
+	}
+
